@@ -25,11 +25,11 @@ public class LoginPage {
 	WebDriver driver;
 	public LoginPage(WebDriver driver) {
 		
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(driver,this);
 		this.driver=driver;
 	}
-
-	public void SendUsername() {
+	
+     public void SendUsername() {
 		username.sendKeys("abhishek@marolix.com");
 	}
 	public void SendPassword() {
