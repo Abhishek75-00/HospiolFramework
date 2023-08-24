@@ -37,6 +37,11 @@ public class LoginPage {
 	}
 	public void ClickOnLoginbutton() {
 		loginbutton.click();
+		
 	}
 	
 }
+//com.tamazon 
+//com.uatamazon
+//com.regressionamazon
+//com.pdamazon
