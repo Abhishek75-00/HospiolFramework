@@ -4,24 +4,30 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import pom1.LoginPage;
 import pom1.RadioLogy;
 
-public class TestClass {
+public class VerificationOfRadioLogy {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+WebDriver driver;
+RadioLogy Rd;
+	@BeforeClass
+	public void launchBrowser() {
+		System.out.println("BeforeClass");
 		System.setProperty("webdriver.chrome.driver","D:\\abhi\\chromedriver-win32\\chromedriver.exe");
-		
-	WebDriver driver=new ChromeDriver();
-		
-		
+		driver=new ChromeDriver();
+	}
+	@BeforeMethod
+	public void LoginToApplication() {
+		System.out.println("Before Method");
 		driver.get("http://admin.hospiol.com/site/login");
-		
-		
-		//driver.manage().window().maximize();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 		
@@ -30,10 +36,13 @@ public class TestClass {
 		lp.SendPassword();
 		lp.ClickOnLoginbutton();
 		
+		 Rd=new RadioLogy(driver) ;
 		
 		
 		
-		RadioLogy Rd=new RadioLogy(driver) ;
+	}
+	@Test
+	public void ToVerifyRadioLogy() {
 		Rd.SelectRadiology();
 		Rd.SelectRadiologytest();
 		Rd.SelectAddRadiology();
@@ -42,5 +51,14 @@ public class TestClass {
 		Rd.ChargeN();
 		Rd.SelectChargeName();
 	}
-
+		
+	@AfterMethod
+	public void LogoutFromApplication() {
+		System.out.println("AfterMethod");
+	}
+	@AfterClass
+	public void ClosedBrowser()
+	{	
+		System.out.println("AfterClass");
+}
 }
